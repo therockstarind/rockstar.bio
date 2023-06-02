@@ -19,17 +19,21 @@ const Media: React.FC<MediaProps> = ({ media }) => {
       rel="noopener noreferrer"
     >
       <div className="relative shadow dark:shadow-gray-600 p-2 rounded-2xl group transition-[opacity,transform] duration-100">
-        <div className="w-44 h-64 relative rounded-2xl overflow-hidden">
+        <div className="w-48 h-68 relative rounded-2xl overflow-hidden">
           <img
             src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${media.posterPath}`}
             alt={`Poster for ${media.title}`}
             className="rounded-lg group-hover:scale-105 transition-transform"
           />
           {media.isFavorite && (
-            <div className="absolute top-2 right-2 text-[#ff0000]">
-               <Tooltip tipChildren="Personal Favorite">
-              <AiFillHeart className="h-5 w-5" />
-              </Tooltip>
+            <div className="absolute top-1 right-1">
+              <div className="border rounded-2xl p-0.5">
+                <Tooltip tipChildren="Personal Favorite">
+                  <div>
+                    <AiFillHeart className="h-5 w-5 text-[#FF007F]" />
+                  </div>
+                </Tooltip>
+              </div>
             </div>
           )}
         </div>
