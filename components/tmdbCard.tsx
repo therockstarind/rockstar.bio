@@ -1,13 +1,9 @@
 import { useEffect, useState } from 'react';
-import {
-  fetchMovieRatings,
-  fetchTVMediaRatings,
-  MediaRating,
-} from '@lib/tmdbApi';
+import { fetchMovieRatings, fetchTVMediaRatings, MediaRating } from '@lib/tmdbApi';
 import Link from 'next/link';
-import { Tooltip } from '@chakra-ui/react';
 import { AiFillHeart } from 'react-icons/ai';
 import StarRating from './StarRating';
+import Tooltip from './Tooltip/Tooltip';
 
 interface MediaProps {
   media: MediaRating;
@@ -31,8 +27,8 @@ const Media: React.FC<MediaProps> = ({ media }) => {
           />
           {media.isFavorite && (
             <div className="absolute top-2 right-2 text-[#ff0000]">
-              <Tooltip title='Personal Favorite' color='#ff0000'>
-                <AiFillHeart className="h-5 w-5" />
+               <Tooltip tipChildren="Personal Favorite">
+              <AiFillHeart className="h-5 w-5" />
               </Tooltip>
             </div>
           )}

@@ -7,7 +7,6 @@ import "nprogress/nprogress.css";
 import { DarkModeProvider } from "@context/darkModeContext";
 import { GoogleAnalytics } from "nextjs-google-analytics";
 import { AppProps } from "next/app";
-import 'remixicon/fonts/remixicon.css'
 import { ChakraProvider } from '@chakra-ui/react'
 
 
