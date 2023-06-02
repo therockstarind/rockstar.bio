@@ -1,6 +1,6 @@
 import React from "react";
 import { OnedriveFile } from "@lib/onedriveApi";
-import { Image } from "antd";
+import { Image } from '@chakra-ui/react';
 import { motion } from "framer-motion";
 import { fromLeftChildren } from "@content/FramerMotionVariants";
 import VideoCard from "./VideoCard";
