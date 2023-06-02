@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@lib/*": ["lib/*"],
+      "@utils/*": ["utils/*"],
+      "@content/*": ["content/*"],
+      "@styles/*": ["styles/*"],
+      "@context/*": ["context/*"],
+      "@layout/*": ["layout/*"],
+      "@hooks/*": ["hooks/*"],
+      "@ui/*": ["components/OneDrive/ui/*"]
+    },
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/sitemap.xml.jsx"],
+  "exclude": ["node_modules"]
+}

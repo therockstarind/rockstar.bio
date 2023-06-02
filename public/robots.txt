@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://rock-star.in/sitemap.xml
