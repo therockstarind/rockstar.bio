@@ -30,7 +30,7 @@ function SocialIcon() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
     >
-      <div className='flex justify-center gap-x-8 text-[32px] text-black dark:text-white'>
+      <div className='flex justify-center gap-x-8 text-[32px] text-black dark:text-white mb-4'>
         {socialIcons.map(({ href, icon, tooltip }) => (
           <a href={href} target='_blank' rel='noopener noreferrer' key={href}>
             <motion.div whileHover={{ scale: 1.2 }}>
