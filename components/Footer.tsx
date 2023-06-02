@@ -1,9 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  FadeContainer,
-  opacityVariant,
-} from "../content/FramerMotionVariants";
+import { FadeContainer } from "../content/FramerMotionVariants";
 import { motion } from "framer-motion";
 import { SiSpotify } from "react-icons/si";
 import useSWR from "swr";
@@ -33,20 +30,7 @@ export default function Footer({
             <NotPlaying />
           )}
         </div>
-        <motion.div
-          variants={opacityVariant}
-          className="flex items-center gap-2 justify-center text-black dark:text-white my-5 space-x-2"
-        >
-          <SocialIcon link="https://wa.me/919927241144?text=Hello..." icon="whatsapp" tooltipText="WhatsApp" tooltipColor="green" />
-          <SocialIcon link="https://github.com/therockstarind" icon="github" tooltipText="GitHub" tooltipColor="magenta" />
-          <SocialIcon link="https://t.me/RockStarIND" icon="telegram" tooltipText="Telegram" tooltipColor="blue" />
-        </motion.div>
-        <motion.div
-          variants={opacityVariant}
-          className="items-center text-lg font-bold mb-5 justify-center text-black dark:text-white space-x-4 hidden"
-        >
-          <h1>Works</h1> <span>|</span> <h1>Projects</h1>
-        </motion.div>
+        <SocialIcon />
       </motion.div>
 
     </footer>

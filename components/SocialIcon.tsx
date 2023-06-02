@@ -1,35 +1,49 @@
-import { Tooltip } from '@chakra-ui/react';
-import React from 'react';
-import { motion } from "framer-motion";
+
 import { VscGithub } from "react-icons/vsc";
-import { RiTelegramLine, RiWhatsappLine } from "react-icons/ri";
+import { RiTelegramLine, RiYoutubeLine } from 'react-icons/ri';
+import { motion } from "framer-motion";
+import Tooltip from "./Tooltip/Tooltip";
 
-
-interface SocialIconProps {
-  link: string;
-  icon: 'whatsapp' | 'github' | 'telegram';
-  tooltipText: string;
-  tooltipColor: string;
-}
-
-const SocialIcon: React.FC<SocialIconProps> = ({ link, icon, tooltipText, tooltipColor }) => {
-  const iconMap = {
-    whatsapp: RiWhatsappLine,
-    github: VscGithub,
-    telegram: RiTelegramLine,
-  };
-
-  const Icon = iconMap[icon];
+function SocialIcon() {
+  const socialIcons = [
+    {
+      href: 'https://www.youtube.com/@TheRockStarIND',
+      icon: <RiYoutubeLine />,
+      tooltip: 'YouTube',
+    },
+    {
+      href: 'https://github.com/therockstarind',
+      icon: <VscGithub />,
+      tooltip: 'Github',
+    },
+    {
+      href: 'https://t.me/RockStarIND',
+      icon: <RiTelegramLine />,
+      tooltip: 'Telegram',
+    }
+  ];
 
   return (
-    <Tooltip title={tooltipText} color={tooltipColor}>
-      <a href={link} target="_blank" rel="noopener noreferrer">
-      <motion.div whileHover={{ scale: 1.2 }}>
-        <Icon size={32} />
-        </motion.div>
-      </a>
-    </Tooltip>
+    <>
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+    >
+      <div className='flex justify-center gap-x-8 text-[32px] text-black dark:text-white'>
+        {socialIcons.map(({ href, icon, tooltip }) => (
+          <a href={href} target='_blank' rel='noopener noreferrer' key={href}>
+            <motion.div whileHover={{ scale: 1.2 }}>
+            <Tooltip interactive={false} tipChildren={tooltip}>
+              {icon}
+            </Tooltip>
+            </motion.div>
+          </a>
+        ))}
+      </div>
+    </motion.div>
+      </>
   );
-};
+}
 
 export default SocialIcon;
