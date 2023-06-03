@@ -47,20 +47,15 @@ export default function Home({ }: { blogs: FrontMatter[] }) {
           <div className="w-full relative mx-auto flex flex-col items-center gap-10">
             <motion.div
               variants={popUp}
-              className="relative w-44 h-44 xs:w-52 xs:h-52 flex justify-center items-center rounded-full p-3 before:absolute before:inset-0 before:border-t-4 before:border-b-4 before:border-black before:dark:border-white before:rounded-full before:animate-photo-spin"
+              className="relative w-64 h-64 flex justify-center items-center rounded-full p-3 before:absolute before:inset-0 before:border-t-4 before:border-b-4 before:border-black before:dark:border-white before:rounded-full before:animate-photo-spin"
             >
               <Image
                 src={ProfileImage}
                 className="rounded-full shadow filter"
                 width={933}
                 height={933}
-                alt="cover Profile Image"
-                quality={75}
+                alt="Profile Image"
                 priority
-                // style={{
-                //   maxWidth: "100%",
-                //   height: "auto",
-                // }}
               />
             </motion.div>
 
@@ -103,8 +98,6 @@ export default function Home({ }: { blogs: FrontMatter[] }) {
 
         <div>
           <SkillSection />
-          {/*<BlogsSection blogs={blogs} />
-          <Contact />*/}
           <Pets pets={pets} />
         </div>
       </div>
