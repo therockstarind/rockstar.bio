@@ -1,7 +1,7 @@
 import BlogLayout from "@layout/BlogLayout";
 import Metadata from "@components/MetaData";
 import MDXComponents from "@components/MDXComponents";
-import PageNotFound from "pages/404";
+import PageNotFound from "src/pages/404";
 import MDXContent from "@lib/MDXContent";
 import { MDXRemote } from "next-mdx-remote";
 import { GetStaticPropsContext } from "next";
