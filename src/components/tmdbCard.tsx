@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchMovieRatings, fetchTVMediaRatings, MediaRating } from '@lib/tmdbApi';
+import { fetchTVMediaRatings, MediaRating } from '@lib/tmdbApi';
 import Link from 'next/link';
 import { AiFillHeart } from 'react-icons/ai';
 import StarRating from './StarRating';
@@ -22,15 +22,15 @@ const Media: React.FC<MediaProps> = ({ media }) => {
         <div className="w-48 h-68 relative rounded-2xl overflow-hidden">
           <img
             src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${media.posterPath}`}
-            alt={`Poster for ${media.title}`}
-            className="rounded-lg group-hover:scale-105 transition-transform"
+            alt={`${media.title}`}
+            className="h-full w-full rounded-lg group-hover:scale-105 transition-transform"
           />
           {media.isFavorite && (
-            <div className="absolute top-1 right-1">
-              <div className="border rounded-2xl p-0.5">
+            <div className="absolute top-1 right-0.5">
+              <div className="bg-white dark:bg-gray-800 rounded-full p-1">
                 <Tooltip tipChildren="Personal Favorite">
                   <div>
-                    <AiFillHeart className="h-5 w-5 text-[#FF007F]" />
+                    <AiFillHeart className="h-6 w-6 text-[#FF007F]" />
                   </div>
                 </Tooltip>
               </div>
@@ -45,12 +45,15 @@ const Media: React.FC<MediaProps> = ({ media }) => {
   );
 };
 
-const TMDBList: React.FC = () => {
+interface TMDBListProps {
+  movieRatings: MediaRating[] | null; 
+}
+
+const TMDBList: React.FC<TMDBListProps> = ({ movieRatings }) => {
   const [mediaRatings, setMediaRatings] = useState<MediaRating[]>([]);
 
   useEffect(() => {
     const fetchMediaData = async () => {
-      const movieRatings = await fetchMovieRatings();
       const tvRatings = await fetchTVMediaRatings();
 
       if (movieRatings && tvRatings) {
@@ -71,7 +74,7 @@ const TMDBList: React.FC = () => {
     };
 
     fetchMediaData();
-  }, []);
+  }, [movieRatings]);
 
   return (
     <div className="flex items-center gap-2 md:gap-4 overflow-x-scroll mt-5 pb-5 horizontal-scrollbar">
