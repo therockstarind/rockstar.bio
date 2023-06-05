@@ -12,6 +12,7 @@ interface MediaProps {
 const Media: React.FC<MediaProps> = ({ media }) => {
   const mediaType = media.mediaType === 'movie' ? 'movie' : 'tv';
 
+  // Movies component
   return (
     <Link
       href={`https://www.themoviedb.org/${mediaType}/${media.id}`}
@@ -19,11 +20,11 @@ const Media: React.FC<MediaProps> = ({ media }) => {
       rel="noopener noreferrer"
     >
       <div className="relative shadow dark:shadow-gray-600 p-2 rounded-2xl group transition-[opacity,transform] duration-100">
-        <div className="w-48 h-68 relative rounded-2xl overflow-hidden">
+        <div className="w-48 h-64 relative rounded-2xl overflow-hidden">
           <img
             src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${media.posterPath}`}
             alt={`${media.title}`}
-            className="h-full w-full ounded-lg group-hover:scale-105 transition-transform"
+            className="h-full w-full group-hover:scale-105 transition-transform"
           />
           {media.isFavorite && (
             <div className="absolute top-1 right-0.5">
@@ -45,6 +46,33 @@ const Media: React.FC<MediaProps> = ({ media }) => {
   );
 };
 
+// Loading Movies component
+function LoadingMovies() {
+  return (
+    <>
+      {Array.from(Array(10).keys()).map((item) => (
+        <div
+          key={item}
+          className="relative shadow dark:shadow-gray-600 p-2 rounded-2xl group transition-[opacity,transform] duration-100"
+        >
+          <div className="w-48 h-64 relative rounded-2xl overflow-hidden">
+            <div className="bg-gray-200 dark:bg-darkSecondary h-full w-full rounded-lg animate-pulse"></div>
+            <div className="absolute top-1 right-0.5">
+              <div className="bg-white dark:bg-gray-800 rounded-full p-1">
+                <div className="h-6 w-6 animate-pulse bg-gray-200 dark:bg-gray-600 rounded-full"></div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-2 flex items-center justify-center">
+            <div className="w-24 h-6 bg-gray-200 dark:bg-gray-600 rounded-full animate-pulse"></div>
+          </div>
+        </div>
+      ))}
+    </>
+  );
+}
+
+// TMDBList component
 const TMDBList: React.FC = () => {
   const [mediaRatings, setMediaRatings] = useState<MediaRating[]>([]);
 
@@ -75,9 +103,13 @@ const TMDBList: React.FC = () => {
 
   return (
     <div className="flex items-center gap-2 md:gap-4 overflow-x-scroll mt-5 pb-5 horizontal-scrollbar">
-      {mediaRatings.map((media) => (
-        <Media key={media.id} media={media} />
-      ))}
+      {mediaRatings.length > 0 ? (
+        mediaRatings.map((media) => (
+          <Media key={media.id} media={media} />
+        ))
+      ) : (
+        <LoadingMovies />
+      )}
     </div>
   );
 };
