@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchTVMediaRatings, MediaRating } from '@lib/tmdbApi';
+import { fetchMovieRatings, fetchTVMediaRatings, MediaRating } from '@lib/tmdbApi';
 import Link from 'next/link';
 import { AiFillHeart } from 'react-icons/ai';
 import StarRating from './StarRating';
@@ -23,7 +23,7 @@ const Media: React.FC<MediaProps> = ({ media }) => {
           <img
             src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${media.posterPath}`}
             alt={`${media.title}`}
-            className="h-full w-full rounded-lg group-hover:scale-105 transition-transform"
+            className="h-full w-full ounded-lg group-hover:scale-105 transition-transform"
           />
           {media.isFavorite && (
             <div className="absolute top-1 right-0.5">
@@ -45,15 +45,12 @@ const Media: React.FC<MediaProps> = ({ media }) => {
   );
 };
 
-interface TMDBListProps {
-  movieRatings: MediaRating[] | null; 
-}
-
-const TMDBList: React.FC<TMDBListProps> = ({ movieRatings }) => {
+const TMDBList: React.FC = () => {
   const [mediaRatings, setMediaRatings] = useState<MediaRating[]>([]);
 
   useEffect(() => {
     const fetchMediaData = async () => {
+      const movieRatings = await fetchMovieRatings();
       const tvRatings = await fetchTVMediaRatings();
 
       if (movieRatings && tvRatings) {
@@ -74,7 +71,7 @@ const TMDBList: React.FC<TMDBListProps> = ({ movieRatings }) => {
     };
 
     fetchMediaData();
-  }, [movieRatings]);
+  }, []);
 
   return (
     <div className="flex items-center gap-2 md:gap-4 overflow-x-scroll mt-5 pb-5 horizontal-scrollbar">

@@ -11,14 +11,14 @@ import AnimatedDiv from "@components/FramerMotion/AnimatedDiv";
 import { motion } from "framer-motion";
 import pageMeta from "@content/meta";
 import TMDBList from "@components/tmdbCard";
-import { MediaRating, fetchMovieRatings } from '@lib/tmdbApi';
 
 type Stats = {
   title: string;
   value: string;
 };
 
-export default function Stats({ movieRatings }: { movieRatings: MediaRating[] | null }) {
+export default function Stats({
+}: {}) {
   const { data: topTracks } = useSWR("/api/stats/tracks", fetcher);
 
   return (
@@ -44,7 +44,7 @@ export default function Stats({ movieRatings }: { movieRatings: MediaRating[] | 
             <AnimatedDiv
               variants={FadeContainer}
             >
-                <TMDBList movieRatings={movieRatings} />
+                <TMDBList />
             </AnimatedDiv>
         </div>
         <AnimatedText
@@ -123,12 +123,10 @@ function LoadingSongs() {
   );
 }
 
-export async function getStaticProps() {
-  const movieRatings = await fetchMovieRatings();
 
+export async function getStaticProps() {
   return {
     props: {
-      movieRatings, 
     },
   };
 }
