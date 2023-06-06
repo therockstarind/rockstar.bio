@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { fetchMovieRatings, fetchTVMediaRatings, MediaRating } from '@lib/tmdbApi';
 import Link from 'next/link';
 import { AiFillHeart } from 'react-icons/ai';
-import StarRating from './StarRating';
-import Tooltip from './Tooltip/Tooltip';
+import StarRating from '../StarRating';
+import Tooltip from '../Tooltip/Tooltip';
 
 interface MediaProps {
   media: MediaRating;

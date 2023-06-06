@@ -10,7 +10,7 @@ import { SpotifyTrack } from "@lib/types";
 import AnimatedDiv from "@components/FramerMotion/AnimatedDiv";
 import { motion } from "framer-motion";
 import pageMeta from "@content/meta";
-import TMDBList from "@components/tmdbCard";
+import TMDBList from "@/components/Card/tmdbCard";
 
 type Stats = {
   title: string;
