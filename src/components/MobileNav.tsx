@@ -1,19 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { GoFileMedia, GoGear, GoHome, GoPerson } from "react-icons/go";
 import { motion } from 'framer-motion';
-import { TbMovie } from "react-icons/tb";
+import { About, Gallery, Home, Media, Uses } from './osIcons';
 
 const MobileNav: React.FC = () => {
   const router = useRouter();
 
   const navLinks = [
-    { name: 'Home', icon: <GoHome size={24} /> },
-    { name: 'About', icon: <GoPerson size={24} /> },
-    { name: 'Media', icon: <TbMovie size={24} /> },
-    { name: 'Uses', icon: <GoGear size={24} /> },
-    { name: 'Gallery', icon: <GoFileMedia size={24} /> },
+    { name: 'Home', icon: <Home/> },
+    { name: 'About', icon: <About /> },
+    { name: 'Media', icon: <Media /> },
+    { name: 'Uses', icon: <Uses /> },
+    { name: 'Gallery', icon: <Gallery /> },
   ];
 
   const linkVariants = {
