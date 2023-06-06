@@ -6,10 +6,11 @@ const HomeIcon: React.FC = () => {
   useEffect(() => {
     const getDeviceIcon = async () => {
       if (typeof window !== 'undefined') {
-        const { RiAndroidFill, RiWindowsFill, RiAppleFill } = await import('react-icons/ri');
+        const { RiWindowsFill, RiAppleFill } = await import('react-icons/ri');
+        const { ImAndroid } = await import('react-icons/im');
         const icons = {
           windows: RiWindowsFill,
-          android: RiAndroidFill,
+          android: ImAndroid,
           apple: RiAppleFill
         };
         let deviceIcon = null;

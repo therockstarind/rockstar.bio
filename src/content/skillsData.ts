@@ -1,4 +1,5 @@
 import { SkillType } from "@lib/types";
+import { FaJava } from "react-icons/fa"
 import {
   SiHtml5,
   SiCss3,
@@ -9,6 +10,14 @@ import {
   SiMysql,
   SiTypescript,
   SiReact,
+  SiPhp,
+  SiAndroidstudio,
+  SiFlutter,
+  SiKotlin,
+  SiLaravel,
+  SiVuedotjs,
+  SiVultr,
+  SiYarn,
 } from "react-icons/si";
 
 const skills: SkillType[] = [
@@ -48,7 +57,42 @@ const skills: SkillType[] = [
     name: "Git",
     Icon: SiGit,
   },
-
+  {
+    name: "PHP",
+    Icon: SiPhp,
+  },
+  {
+    name: "Java",
+    Icon: FaJava,
+  },
+  {
+    name: "Flutter",
+    Icon: SiFlutter,
+  },
+  {
+    name: "Androidstudio",
+    Icon: SiAndroidstudio,
+  },
+  {
+    name: "Kotlin",
+    Icon: SiKotlin,
+  },
+  {
+    name: "Yarn",
+    Icon: SiYarn,
+  },
+  {
+    name: "Vultr",
+    Icon: SiVultr,
+  },
+  {
+    name: "Vue.js",
+    Icon: SiVuedotjs,
+  },
+  {
+    name: "Laravel",
+    Icon: SiLaravel,
+  },
 ];
 
 export default skills;
