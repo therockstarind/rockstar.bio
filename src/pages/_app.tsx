@@ -8,6 +8,7 @@ import { DarkModeProvider } from "@context/darkModeContext";
 import { GoogleAnalytics } from "nextjs-google-analytics";
 import { AppProps } from "next/app";
 import { ChakraProvider } from '@chakra-ui/react'
+import { Analytics } from '@vercel/analytics/react';
 
 
 NProgress.configure({
@@ -46,6 +47,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
         </ChakraProvider>
       </Layout>
+      <Analytics />
     </DarkModeProvider>
   );
 }
