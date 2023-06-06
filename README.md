@@ -1,4 +1,4 @@
-# ROCKSTAR.BIO is Next.js Portfolio with Tailwind CSS and MDX
+# Next.js Portfolio with Tailwind CSS and MDX
 
 This repository contains a portfolio website built using Next.js, Tailwind CSS, and MDX. The portfolio showcases a responsive and modern web application that allows you to create and display your portfolio in a user-friendly manner. It includes features such as dynamic routing, server-side rendering, and Markdown support for content creation.
 
@@ -7,6 +7,7 @@ This repository contains a portfolio website built using Next.js, Tailwind CSS, 
 - **Next.js**: The portfolio is built on Next.js, a React framework that offers server-side rendering, static site generation, and routing capabilities.
 - **Tailwind CSS**: The project utilizes Tailwind CSS, a highly customizable CSS framework, for efficient and responsive styling.
 - **MDX**: The portfolio supports MDX (Markdown with JSX), allowing you to write interactive and dynamic content using Markdown syntax and React components.
+- **TMDB API Integration**: The portfolio includes integration with the TMDB (The Movie Database) API. This integration allows you to fetch rating data from TMDB and showcase it on your website. You can display movie             ratings, favorite, and other relevant information to provide a rich and engaging user experience.
 - **Vercel**: The portfolio is deployed and hosted on Vercel, a cloud platform optimized for Next.js applications, ensuring fast and reliable performance.
 
 ## Installation
