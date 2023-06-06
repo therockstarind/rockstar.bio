@@ -43,7 +43,7 @@ const MobileNav: React.FC = () => {
                 <div>
                   {link.icon}
                 </div>
-                <div className="text-xs">
+                <div className="hidden sm:block">
                   {link.name}
                 </div>
               </div>

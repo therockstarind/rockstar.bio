@@ -45,9 +45,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         )}
         <ChakraProvider>
         <Component {...pageProps} />
+        <Analytics />
         </ChakraProvider>
       </Layout>
-      <Analytics />
     </DarkModeProvider>
   );
 }
