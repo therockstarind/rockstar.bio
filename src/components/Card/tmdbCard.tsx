@@ -63,8 +63,8 @@ function LoadingMovies() {
               </div>
             </div>
           </div>
-          <div className="mt-2 flex items-center justify-center">
-            <div className="w-24 h-6 bg-gray-200 dark:bg-gray-600 rounded-full animate-pulse"></div>
+          <div className="mt-2 flex items-center justify-center animate-pulse">
+          <StarRating rating={0} />
           </div>
         </div>
       ))}
