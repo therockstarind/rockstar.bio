@@ -5,7 +5,7 @@ import { IoIosPerson, IoIosFilm, IoIosSettings, IoIosImages } from 'react-icons/
 import { motion } from 'framer-motion';
 import { BsApple } from 'react-icons/bs';
 
-const ios: React.FC = () => {
+const Ios: React.FC = () => {
   const router = useRouter();
 
   const navLinks = [
@@ -56,4 +56,4 @@ const ios: React.FC = () => {
   );
 };
 
-export default ios;
+export default Ios;

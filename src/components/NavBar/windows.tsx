@@ -5,7 +5,7 @@ import { IoMdPerson, IoMdFilm, IoMdSettings, IoMdImages } from 'react-icons/io';
 import { motion } from 'framer-motion';
 import { SiWindows11 } from 'react-icons/si';
 
-const windows: React.FC = () => {
+const Windows: React.FC = () => {
   const router = useRouter();
 
   const navLinks = [
@@ -56,4 +56,4 @@ const windows: React.FC = () => {
   );
 };
 
-export default windows;
+export default Windows;

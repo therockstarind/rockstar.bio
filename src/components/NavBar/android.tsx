@@ -5,7 +5,7 @@ import { IoMdPerson, IoMdFilm, IoMdSettings, IoMdImages } from 'react-icons/io';
 import { motion } from 'framer-motion';
 import { BsAndroid } from 'react-icons/bs';
 
-const android: React.FC = () => {
+const Android: React.FC = () => {
   const router = useRouter();
 
   const navLinks = [
@@ -56,4 +56,4 @@ const android: React.FC = () => {
   );
 };
 
-export default android;
+export default Android;
