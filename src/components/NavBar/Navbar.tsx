@@ -1,19 +1,18 @@
-/* Importing Modules */
 import React, { useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   hamFastFadeContainer,
   popUp,
-} from "../content/FramerMotionVariants";
-import { useDarkMode } from "../context/darkModeContext";
+} from "./../../content/FramerMotionVariants";
+import { useDarkMode } from "../../context/darkModeContext";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
-import MobileNav from "./MobileNav";
-import MusicPlayer from "./Music";
+import MusicPlayer from "../Music";
+import NavBar from "./os";
 
 
-/* TopNavbar Component */
-export default function TopNavbar() {
+/* Navbar Component */
+export default function Navbar() {
   const navRef = useRef<HTMLDivElement>(null);
   const { isDarkMode, changeDarkMode } = useDarkMode();
 
@@ -56,7 +55,7 @@ export default function TopNavbar() {
           initial="hidden"
           animate="visible"
           exit="hidden" >
-        <MobileNav />
+        <NavBar />
       </motion.div>
     </div>
   );
