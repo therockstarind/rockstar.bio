@@ -4,9 +4,9 @@ const pageMeta: PageMeta = {
   home: {
     title: "Rock Star 💕",
     description:
-      "Hi 🙋 Welcome To The Boring Introduction. I would love to make a lot friends and find them all around the world 🌍. btw I like to live alone with my own self and please don’t ask me why I like that🙊🙊🙊....",
+      "",
     image: "/og-img/home.png",
-    keywords: "portfolio Rock Star, portfolio therockstar, Rock Star blogs, rock-star.in",
+    keywords: "",
   },
 
   media: {
