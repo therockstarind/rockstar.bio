@@ -1,7 +1,5 @@
-// Page Components START----------
 import SkillSection from "@components/Home/SkillSection";
 import Image from "next/image";
-import Metadata from "@components/MetaData";
 import {
   FadeContainer,
   headingFromLeft,
@@ -14,12 +12,12 @@ import getRSS from "@lib/generateRSS";
 import generateSitemap from "@lib/sitemap";
 import { motion } from "framer-motion";
 import MDXContent from "@lib/MDXContent";
-import pageMeta from "@content/meta";
 import React from "react";
 import { FrontMatter } from "@lib/types";
 import Link from "next/link";
 import Greeting from "@components/Greeting";
 import Pets from "@components/Pets";
+import Seo from "@/components/seo";
 
 export default function Home({ }: { blogs: FrontMatter[] }) {
   const pets = [
@@ -30,11 +28,12 @@ export default function Home({ }: { blogs: FrontMatter[] }) {
 
   return (
     <>
-      <Metadata
-        title={pageMeta.home.title}
-        description={pageMeta.home.description}
-        previewImage={pageMeta.home.image}
-        keywords={pageMeta.home.keywords}
+      <Seo
+        title="Rock Star 💕"
+        description="Hi 🙋 Welcome To The Boring Introduction. I would love to make a lot friends and find them all around the world 🌍. btw I like to live alone with my own self and please don’t ask me why I like that🙊🙊🙊...."
+        keywords={["rockstar.bio", "therocktarind", "rocktarind", "rdrive"]}
+        url="https://rockstar.bio"
+        ogImage="https://rockstar.bio/og-img/home.png" 
       />
       <div className="relative dark:bg-darkPrimary dark:text-gray-100 max-w-4xl 2xl:max-w-5xl 3xl:max-w-7xl mx-auto">
         <motion.section

@@ -8,7 +8,7 @@ export function Home() {
 
 export function About() {
     return (       
-        <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/user-male-circle.png" alt="About"/>
+        <img width="48" height="48" src="https://img.icons8.com/3d-fluency/94/user-male-circle.png" alt="About"/>
     );
   }
 
