@@ -1,19 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { IoMdPerson, IoMdFilm, IoMdSettings, IoMdImages } from 'react-icons/io';
 import { motion } from 'framer-motion';
-import { SiWindows11 } from 'react-icons/si';
+import { About, Gallery, Home, Media, Tools } from '../SVG/winIcons';
 
 const Windows: React.FC = () => {
   const router = useRouter();
 
   const navLinks = [
-    { name: 'Home', icon: <SiWindows11 size={24} /> },
-    { name: 'About', icon: <IoMdPerson size={24} /> },
-    { name: 'Media', icon: <IoMdFilm size={24} /> },
-    { name: 'Uses', icon: <IoMdSettings size={24} /> },
-    { name: 'Gallery', icon: <IoMdImages size={24} /> },
+    { name: 'Home', icon: <Home /> },
+    { name: 'About', icon: <About /> },
+    { name: 'Media', icon: <Media /> },
+    { name: 'Uses', icon: <Tools /> },
+    { name: 'Gallery', icon: <Gallery /> },
   ];
 
   const linkVariants = {
@@ -26,7 +25,7 @@ const Windows: React.FC = () => {
   };
 
   return (
-    <nav className="fixed bottom-3 w-full left-1/2 right-1/2 transform -translate-x-1/2 border dark:border-gray-800 rounded-lg flex flex-col justify-center items-center h-16 bg-gradient-to-b from-white to-gray-200 dark:from-black dark:to-gray-800 max-w-2xl">
+    <nav className="fixed bottom-3 w-full left-1/2 right-1/2 transform -translate-x-1/2 border dark:border-gray-800 rounded-lg flex flex-col justify-center items-center h-20 bg-gradient-to-b from-white to-gray-200 dark:from-black dark:to-gray-800 max-w-2xl">
       <div className="flex justify-around w-full">
         {navLinks.map((link) => (
           <Link
@@ -44,7 +43,7 @@ const Windows: React.FC = () => {
                 <div>
                   {link.icon}
                 </div>
-                <div className="text-xs">
+                <div className="hidden sm:block">
                   {link.name}
                 </div>
               </div>

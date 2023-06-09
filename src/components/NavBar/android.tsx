@@ -1,19 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { IoMdPerson, IoMdFilm, IoMdSettings, IoMdImages } from 'react-icons/io';
 import { motion } from 'framer-motion';
-import { BsAndroid } from 'react-icons/bs';
+import { About, Gallery, Home, Media, Tools } from '../SVG/andIcons';
 
 const Android: React.FC = () => {
   const router = useRouter();
 
   const navLinks = [
-    { name: 'Home', icon: <BsAndroid size={24} /> },
-    { name: 'About', icon: <IoMdPerson size={24} /> },
-    { name: 'Media', icon: <IoMdFilm size={24} /> },
-    { name: 'Uses', icon: <IoMdSettings size={24} /> },
-    { name: 'Gallery', icon: <IoMdImages size={24} /> },
+    { name: 'Home', icon: <Home /> },
+    { name: 'About', icon: <About /> },
+    { name: 'Media', icon: <Media /> },
+    { name: 'Uses', icon: <Tools /> },
+    { name: 'Gallery', icon: <Gallery /> },
   ];
 
   const linkVariants = {
@@ -44,7 +43,7 @@ const Android: React.FC = () => {
                 <div>
                   {link.icon}
                 </div>
-                <div className="text-xs">
+                <div className="hidden sm:block">
                   {link.name}
                 </div>
               </div>

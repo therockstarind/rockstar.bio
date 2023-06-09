@@ -1,19 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { IoIosPerson, IoIosFilm, IoIosSettings, IoIosImages } from 'react-icons/io';
 import { motion } from 'framer-motion';
-import { BsApple } from 'react-icons/bs';
+import { About, Gallery, Home, Media, Tools } from '../SVG/iosIcon';
 
 const Ios: React.FC = () => {
   const router = useRouter();
 
   const navLinks = [
-    { name: 'Home', icon: <BsApple size={24} /> },
-    { name: 'About', icon: <IoIosPerson size={24} /> },
-    { name: 'Media', icon: <IoIosFilm size={24} /> },
-    { name: 'Uses', icon: <IoIosSettings size={24} /> },
-    { name: 'Gallery', icon: <IoIosImages size={24} /> },
+    { name: 'Home', icon: <Home /> },
+    { name: 'About', icon: <About /> },
+    { name: 'Media', icon: <Media /> },
+    { name: 'Uses', icon: <Tools /> },
+    { name: 'Gallery', icon: <Gallery /> },
   ];
 
   const linkVariants = {
@@ -44,7 +43,7 @@ const Ios: React.FC = () => {
                 <div>
                   {link.icon}
                 </div>
-                <div className="text-xs">
+                <div className="hidden sm:block">
                   {link.name}
                 </div>
               </div>
