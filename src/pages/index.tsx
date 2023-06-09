@@ -17,7 +17,7 @@ import { FrontMatter } from "@lib/types";
 import Link from "next/link";
 import Greeting from "@components/Greeting";
 import Pets from "@components/Pets";
-import Seo from "@/components/seo";
+import Seo from "@/components/Seo";
 
 export default function Home({ }: { blogs: FrontMatter[] }) {
   const pets = [
