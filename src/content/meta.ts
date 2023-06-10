@@ -1,34 +1,6 @@
 import { PageMeta } from "@lib/types";
 
 const pageMeta: PageMeta = {
-  home: {
-    title: "Rock Star 💕",
-    description:
-      "",
-    image: "/og-img/home.png",
-    keywords: "",
-  },
-
-  media: {
-    title: "Movies & TV Series",
-    description:
-      "Here you can see what movie i have seen or gonna seen and top music stats.",
-    image: "https://rock-star.in/og-img/movie.png",
-    keywords: "Movies, Statistics, Web Series",
-  },
-  uses: {
-    title: "Uses",
-    description:
-      "In case you are wondering What tech I use, Here's the list of what tech I'm currently using for coding on the daily basis. This list is always changing.",
-    image: "https://rock-star.in/og-img/uses.png",
-    keywords: "Utilities, what i use?, utils, setup, mobile, uses,",
-  },
-  gallery: {
-    title: "Gallery",
-    description: "Here you watch the all photos & videos of Rock Star Journy . . .",
-    image: "https://rock-star.in/og-img/gallery.png",
-    keywords: "Rock Star, Rock-Star.in, Photos of Rock Star, Gallery",
-  },
   blogs: {
     title: "Blogs",
     description:
@@ -43,33 +15,12 @@ const pageMeta: PageMeta = {
     image: "https://rock-star.in/og-img/lyra.png",
     keywords: "bookmark, blogs, ",
   },
-  certificates: {
-    title: "Certificates",
-    description:
-      "I've participated in many contests, courses and test and get certified in many skills. You can find the certificates below.",
-    image: "https://rock-star.in/og-img/lyra.png",
-    keywords: "Certificates, verified",
-  },
-  projects: {
-    title: "Projects",
-    description:
-      "I've been making various types of projects some of them were basics and some of them were complicated.",
-    image: "https://rock-star.in/og-img/lyra.png",
-    keywords: "projects, work, side project,",
-  },
   about: {
     title: "About",
     description:
       "Hey, I am Rock Star. A Front-end Developer/React Developer from India who loves to design and code. I use React.js or Next.js to build the web application interfaces and the functionalities. At the moment, I am pursuing my Bachelor's degree in Computer Science.",
     image: "https://rock-star.in/og-img/about.png",
     keywords: "about, about me, ",
-  },
-  privacy: {
-    title: "Privacy Policy",
-    description:
-      "Privacy is an important factor for everyone. Following is the privacy policies of .in",
-    image: "https://rock-star.in/og-img/lyra.png",
-    keywords: "Privacy, Privacy Policies, ",
   },
   snippets: {
     title: "Code Snippets",

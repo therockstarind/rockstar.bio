@@ -146,16 +146,9 @@ export type PageData = {
 };
 
 export type PageMeta = {
-  home: PageData;
-  media: PageData;
-  uses: PageData;
-  gallery: PageData;
   blogs: PageData;
   bookmark: PageData;
-  certificates: PageData;
-  projects: PageData;
   about: PageData;
-  privacy: PageData;
   snippets: PageData;
 };
 

@@ -2,15 +2,14 @@ import React from "react";
 import useSWR from "swr";
 import { FadeContainer, opacityVariant } from "@content/FramerMotionVariants";
 import fetcher from "@lib/fetcher";
-import MetaData from "@components/MetaData";
 import Track from "@components/Stats/Track";
 import AnimatedHeading from "@components/FramerMotion/AnimatedHeading";
 import AnimatedText from "@components/FramerMotion/AnimatedText";
 import { SpotifyTrack } from "@lib/types";
 import AnimatedDiv from "@components/FramerMotion/AnimatedDiv";
 import { motion } from "framer-motion";
-import pageMeta from "@content/meta";
 import TMDBList from "@/components/Card/tmdbCard";
+import Seo from "@/components/Seo";
 
 type Stats = {
   title: string;
@@ -23,13 +22,13 @@ export default function Stats({
 
   return (
     <>
-      <MetaData
-        title={pageMeta.media.title}
-        description={pageMeta.media.description}
-        previewImage={pageMeta.media.image}
-        keywords={pageMeta.media.keywords}
+      <Seo
+        title="Movies & TV Series | Rock Star 💕"
+        description="In case you are wondering What Movies & TV Series I watch and Music I listen, Here's the list of what I'm currently listing or watching on the daily basis. This list is always changing."
+        keywords={[ "what i watch?", "what i listen?", "Movies", "Web Series", "Statistics", "rockstar.bio", "therocktarind", "rocktarind", "rdrive"]}
+        url="https://rockstar.bio/media/"
+        ogImage="https://rockstar.bio/og-img/media.png" 
       />
-
       <section className="pageTop font-inter">
         <div>
           <motion.h3

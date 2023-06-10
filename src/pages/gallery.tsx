@@ -1,4 +1,3 @@
-import MetaData from "@components/MetaData";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@components/OneDrive/ui/Tabs";
 import { OnedriveFile, fetchMediaFiles } from "@lib/onedriveApi";
 import React, { useState, useEffect } from "react";
@@ -6,8 +5,8 @@ import AllGallery from "@components/OneDrive/AllGalleryContent";
 import PhotoGallery from "@components/OneDrive/PhotoGallery";
 import VideoGallery from "@components/OneDrive/VideoGallery";
 import { MdOutlineOndemandVideo } from "react-icons/md";
-import pageMeta from "@content/meta";
 import { HiPhotograph, HiViewGrid } from "react-icons/hi";
+import Seo from "@/components/Seo";
 
 interface Props {
   allContent: OnedriveFile[];
@@ -22,11 +21,12 @@ export const Photos: React.FC<Props> = ({ allContent }) => {
 
   return (
     <>
-      <MetaData
-        title={pageMeta.gallery.title}
-        description={pageMeta.gallery.description}
-        previewImage={pageMeta.gallery.image}
-        keywords={pageMeta.gallery.keywords}
+      <Seo
+        title="Gallery | Rock Star 💕"
+        description="Here you watch the all photos & videos of our life Journy . . ."
+        keywords={[ "photos", "videos", "rockstar.bio", "therocktarind", "rocktarind", "rdrive"]}
+        url="https://rockstar.bio/gallery/"
+        ogImage="https://rockstar.bio/og-img/gallery.png" 
       />
       {isLoading ? (
         <div>Loading...</div>

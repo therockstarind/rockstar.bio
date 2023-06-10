@@ -28,6 +28,7 @@
     "@types/glob": "^8.1.0",
     "@types/react": "^18.2.8",
     "@vercel/analytics": "^1.0.1",
+    "@vercel/og": "^0.5.7",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
     "framer-motion": "^10.12.16",

@@ -1,4 +1,3 @@
-import MetaData from "@components/MetaData";
 import PageTop from "@components/PageTop";
 import utilities from "@content/utilitiesData";
 import Link from "next/link";
@@ -11,19 +10,19 @@ import {
 } from "@content/FramerMotionVariants";
 import { motion } from "framer-motion";
 import AnimatedDiv from "@components/FramerMotion/AnimatedDiv";
-import pageMeta from "@content/meta";
 import { UtilityType } from "@lib/types";
+import Seo from "@/components/Seo";
 
 export default function Utilities() {
   return (
-    <>
-      <MetaData
-        title={pageMeta.uses.title}
-        description={pageMeta.uses.description}
-        previewImage={pageMeta.uses.image}
-        keywords={pageMeta.uses.keywords}
+    <>     
+      <Seo
+        title="Uses | Rock Star 💕"
+        description="In case you are wondering What tech I use, Here's the list of what tech I'm currently using for coding on the daily basis. This list is always changing."
+        keywords={[ "what i use?", "uses", "rockstar.bio", "therocktarind", "rocktarind", "rdrive"]}
+        url="https://rockstar.bio/uses/"
+        ogImage="https://rockstar.bio/og-img/uses.png" 
       />
-
       <section className="pageTop font-inter">
         <PageTop pageTitle={utilities.title}>{utilities.description}</PageTop>
 
