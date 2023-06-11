@@ -1,7 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/OneDrive/Tabs";
 import React from "react";
-import { MdOutlineOndemandVideo } from "react-icons/md";
-import { HiPhotograph, HiViewGrid } from "react-icons/hi";
 import Seo from "@/components/Seo";
 import PhotoCard from "@/components/OneDrive/PhotoCard";
 import VideoCard from "@/components/OneDrive/VideoCard";
