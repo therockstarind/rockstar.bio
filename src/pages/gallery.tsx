@@ -6,6 +6,7 @@ import Seo from "@/components/Seo";
 import PhotoCard from "@/components/OneDrive/PhotoCard";
 import VideoCard from "@/components/OneDrive/VideoCard";
 import MediaCard from "@/components/OneDrive/MediaCard";
+import { All, Photos, Videos } from "@/components/SVG/TabsIcon";
 
 export default function Gallery({
 }: {}) {
@@ -23,20 +24,17 @@ export default function Gallery({
             <TabsList className="space-x-2">
               <TabsTrigger value="all">
                 <div className="flex items-center justify-center">
-                  <HiViewGrid className="h-5 w-5 md:h-6 md:w-6" />
-                  <p className="ml-2 md:block hidden">All</p>
+                  <All />
                 </div>
               </TabsTrigger>
               <TabsTrigger value="Photos">
                 <div className="flex items-center justify-center">
-                  <HiPhotograph className="h-5 w-5 md:h-6 md:w-6" />
-                  <p className="ml-2 md:block hidden">Photos</p>
+                  <Photos />
                 </div>
               </TabsTrigger>
               <TabsTrigger value="videos">
                 <div className="flex items-center justify-center">
-                  <MdOutlineOndemandVideo className="h-5 w-5 md:h-6 md:w-6" />
-                  <p className="ml-2 md:block hidden">Videos</p>
+                  <Videos />
                 </div>
               </TabsTrigger>
             </TabsList>
