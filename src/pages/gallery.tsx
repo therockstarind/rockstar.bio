@@ -1,24 +1,14 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@components/OneDrive/ui/Tabs";
-import { OnedriveFile, fetchMediaFiles } from "@lib/onedriveApi";
-import React, { useState, useEffect } from "react";
-import AllGallery from "@components/OneDrive/AllGalleryContent";
-import PhotoGallery from "@components/OneDrive/PhotoGallery";
-import VideoGallery from "@components/OneDrive/VideoGallery";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/OneDrive/Tabs";
+import React from "react";
 import { MdOutlineOndemandVideo } from "react-icons/md";
 import { HiPhotograph, HiViewGrid } from "react-icons/hi";
 import Seo from "@/components/Seo";
+import PhotoCard from "@/components/OneDrive/PhotoCard";
+import VideoCard from "@/components/OneDrive/VideoCard";
+import MediaCard from "@/components/OneDrive/MediaCard";
 
-interface Props {
-  allContent: OnedriveFile[];
-}
-
-export const Photos: React.FC<Props> = ({ allContent }) => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(false);
-  }, []);
-
+export default function Gallery({
+}: {}) {
   return (
     <>
       <Seo
@@ -28,9 +18,6 @@ export const Photos: React.FC<Props> = ({ allContent }) => {
         url="https://rockstar.bio/gallery/"
         ogImage="https://rockstar.bio/og-img/gallery.png" 
       />
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
         <section className="pageGallery font-inter max-w-6xl">
           <Tabs defaultValue="all">
             <TabsList className="space-x-2">
@@ -53,30 +40,24 @@ export const Photos: React.FC<Props> = ({ allContent }) => {
                 </div>
               </TabsTrigger>
             </TabsList>
-
             <TabsContent value="all">
-              <AllGallery allContent={allContent} />
+              <MediaCard />
             </TabsContent>
             <TabsContent value="Photos">
-              <PhotoGallery />
+              <PhotoCard />
             </TabsContent>
             <TabsContent value="videos">
-              <VideoGallery />
+              <VideoCard />
             </TabsContent>
           </Tabs>
         </section>
-      )}
     </>
   );
 };
 
 export async function getStaticProps() {
-  const files = await fetchMediaFiles();
   return {
     props: {
-      allContent: files,
     },
   };
 }
-
-export default Photos;
