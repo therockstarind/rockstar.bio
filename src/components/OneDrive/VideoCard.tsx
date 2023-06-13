@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { fetchMediaFiles, OnedriveFile } from '@lib/onedriveApi';
 import { RiArrowLeftSLine, RiArrowRightSLine, RiCloseLine } from 'react-icons/ri';
+import DataLoadButton from './DataLoadButton';
 
 const VideoCard: React.FC = () => {
   const [files, setFiles] = useState<OnedriveFile[]>([]);
   const [selectedVideoIndex, setSelectedVideoIndex] = useState<number | null>(null);
   const [isSliding, setIsSliding] = useState<boolean>(false);
   const [slideStartX, setSlideStartX] = useState<number | null>(null);
+  const [loadedCount, setLoadedCount] = useState<number>(10);
 
   useEffect(() => {
     const getMediaFiles = async () => {
@@ -61,15 +63,22 @@ const VideoCard: React.FC = () => {
   const handleTouchEnd = () => {
     setIsSliding(false);
   };
+  const loadMoreContent = () => {
+    setLoadedCount(prevCount => prevCount + 10);
+  };
+
+  const loadedFiles = files.slice(0, loadedCount);
+  const remainingFiles = files.slice(loadedCount); 
 
   return (
+    <div>
     <div
       className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {files.map((file, index) => (
+      {loadedFiles.map((file, index) => (
         <div
           key={file.id}
           className="relative shadow dark:shadow-gray-600 p-2 rounded-2xl group transition-[opacity,transform] duration-100"
@@ -92,7 +101,7 @@ const VideoCard: React.FC = () => {
           </div>
         </div>       
       ))}
-
+    </div>
       {selectedVideoIndex !== null && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-75 z-50">
           <video
@@ -122,6 +131,12 @@ const VideoCard: React.FC = () => {
           </button>
         </div>
       )}
+      <DataLoadButton
+        data={remainingFiles}
+        handleLoadMore={loadMoreContent}
+        isLoadMore={false}
+        buttonDisable={remainingFiles.length === 0}
+      />
     </div>
   );
 };
