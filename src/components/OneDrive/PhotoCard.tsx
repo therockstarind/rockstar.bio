@@ -7,6 +7,7 @@ const Skeleton: React.FC = () => (
 );
 
 const PhotoCard: React.FC = () => {
+  const pageSize = 10;
   const [files, setFiles] = useState<OnedriveFile[]>([]);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [isSliding, setIsSliding] = useState<boolean>(false);
@@ -15,14 +16,14 @@ const PhotoCard: React.FC = () => {
 
   useEffect(() => {
     const getMediaFiles = async () => {
-      const mediaFiles = await fetchMediaFiles();
+      const mediaFiles = await fetchMediaFiles(0, pageSize);
       const imageFiles = mediaFiles.filter(file => file.file.mimeType.startsWith('image/'));
       setFiles(imageFiles);
       setLoading(false);
     };
 
     getMediaFiles();
-  }, []);
+  });
 
   const handleImageClick = (index: number) => {
     setSelectedImageIndex(index);
@@ -68,8 +69,16 @@ const PhotoCard: React.FC = () => {
     setIsSliding(false);
   };
 
+  const loadMore = async () => {
+    setLoading(true);
+    const mediaFiles = await fetchMediaFiles(files.length, pageSize);
+    const videoFiles = mediaFiles.filter(file => file.file.mimeType.startsWith('video/'));
+    setFiles(prevFiles => [...prevFiles, ...videoFiles]);
+    setLoading(false);
+  };
+
   return (
-    <div
+    <><div
       className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
@@ -87,10 +96,15 @@ const PhotoCard: React.FC = () => {
             <img
               src={file.thumbnail || file['@content.downloadUrl']}
               alt={file.name}
-              className="w-full h-48 md:h-64 object-cover rounded-2xl group-hover:scale-105 transition-transform overflow-hidden"
-            />
+              width={600}
+              height={720}
+              className="w-full h-48 md:h-64 object-cover rounded-2xl group-hover:scale-105 transition-transform overflow-hidden" />
           )}
         </div>
+      ))}
+
+      {loading && Array(pageSize).fill(0).map((_, index) => (
+        <Skeleton key={`skeleton-${index}`} />
       ))}
 
       {selectedImageIndex !== null && (
@@ -98,8 +112,7 @@ const PhotoCard: React.FC = () => {
           <img
             src={files[selectedImageIndex]['@content.downloadUrl']}
             alt="Full Image"
-            className="max-w-full max-h-full"
-          />
+            className="max-w-full max-h-full" />
           <button
             className="absolute top-1/2 left-4 bg-white dark:bg-gray-600 text-black dark:text-white rounded-full p-2 transform -translate-y-1/2"
             onClick={handlePreviousImage}
@@ -123,6 +136,24 @@ const PhotoCard: React.FC = () => {
         </div>
       )}
     </div>
+    <div className="flex justify-center mt-4">
+        {files.length > 0 && files.length % pageSize === 0 && (
+          <button
+            className={`px-4 py-2 mx-2 ${loading ? 'bg-gray-300' : 'bg-gray-800'} hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 rounded-md text-white dark:text-white`}
+            onClick={loadMore}
+            disabled={loading}
+          >
+            {loading ? 'Loading...' : 'Load More'}
+          </button>
+        )}
+
+        {files.length > 0 && files.length % pageSize !== 0 && (
+          <p className="text-gray-600 dark:text-gray-400 text-center mt-4">
+            No More Files
+          </p>
+        )}
+      </div>
+  </>
   );
 };
 

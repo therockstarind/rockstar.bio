@@ -24,14 +24,18 @@ export interface OnedriveFile {
   thumbnail?: string
 }
 
-export async function fetchMediaFiles(): Promise<OnedriveFile[]> {
+export async function fetchMediaFiles(startIndex: number, pageSize: number): Promise<OnedriveFile[]> {
   try {
     const onedriveUrl = publicRuntimeConfig.ONEDRIVE_GALLERY;
     const files: OnedriveFile[] = await odfetch(onedriveUrl);
-    return files.sort((a: OnedriveFile, b: OnedriveFile) => new Date(b.createdDateTime).getTime() - new Date(a.createdDateTime).getTime());
+
+    // Sort files by createdDateTime (latest to last)
+    const sortedFiles = files.sort((a: OnedriveFile, b: OnedriveFile) => new Date(b.createdDateTime).getTime() - new Date(a.createdDateTime).getTime());
+
+    const paginatedFiles = sortedFiles.slice(startIndex, startIndex + pageSize);
+    return paginatedFiles;
   } catch (e: any) {
     console.error(e);
     return [];
   }
 }
-

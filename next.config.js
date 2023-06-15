@@ -26,6 +26,7 @@ module.exports = withPWA({
       'thvqkg.bn.files.1drv.com',
       "i.scdn.co",
       "github.com",
+      "ubuupg.bn.files.1drv.com",
     ],
   },
   typescript: {
