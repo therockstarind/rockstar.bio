@@ -3,7 +3,7 @@ import React from "react";
 import Seo from "@/components/Seo";
 import PhotoCard from "@/components/OneDrive/PhotoCard";
 import VideoCard from "@/components/OneDrive/VideoCard";
-import MediaCard from "@/components/OneDrive/MediaCard";
+import GalleryCard from "@/components/OneDrive/GalleryCard";
 import { All, Photos, Videos } from "@/components/SVG/TabsIcon";
 
 export default function Gallery({
@@ -37,7 +37,7 @@ export default function Gallery({
               </TabsTrigger>
             </TabsList>
             <TabsContent value="all">
-              <MediaCard />
+              <GalleryCard />
             </TabsContent>
             <TabsContent value="Photos">
               <PhotoCard />

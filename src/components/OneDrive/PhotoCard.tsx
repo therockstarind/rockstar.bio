@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchMediaFiles, OnedriveFile } from '@lib/onedriveApi';
 import { RiArrowLeftSLine, RiArrowRightSLine, RiCloseLine } from 'react-icons/ri';
-import DataLoadButton from './DataLoadButton';
 
 const Skeleton: React.FC = () => (
   <div className="w-full h-48 md:h-64 bg-gray-300 animate-pulse rounded-2xl group-hover:scale-105 transition-transform overflow-hidden" />
@@ -13,7 +12,6 @@ const PhotoCard: React.FC = () => {
   const [isSliding, setIsSliding] = useState<boolean>(false);
   const [slideStartX, setSlideStartX] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [loadedCount, setLoadedCount] = useState<number>(10);
 
   useEffect(() => {
     const getMediaFiles = async () => {
@@ -70,39 +68,30 @@ const PhotoCard: React.FC = () => {
     setIsSliding(false);
   };
 
-  const loadMoreContent = () => {
-    setLoadedCount(prevCount => prevCount + 10);
-  };
-
-  const loadedFiles = files.slice(0, loadedCount);
-  const remainingFiles = files.slice(loadedCount);
-
   return (
-    <div>
-      <div
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        {loadedFiles.map((file, index) => (
-          <div
-            key={file.id}
-            className="relative shadow dark:shadow-gray-600 p-2 rounded-2xl group transition-[opacity,transform] duration-100"
-            onClick={() => handleImageClick(index)}
-          >
-            {loading ? (
-              <Skeleton />
-            ) : (
-              <img
-                src={file.thumbnail || file['@content.downloadUrl']}
-                alt={file.name}
-                className="w-full h-48 md:h-64 object-cover rounded-2xl group-hover:scale-105 transition-transform overflow-hidden"
-              />
-            )}
-          </div>
-        ))}
-      </div>
+    <div
+      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {files.map((file, index) => (
+        <div
+          key={file.id}
+          className="relative shadow dark:shadow-gray-600 p-2 rounded-2xl group transition-[opacity,transform] duration-100"
+          onClick={() => handleImageClick(index)}
+        >
+          {loading ? (
+            <Skeleton />
+          ) : (
+            <img
+              src={file.thumbnail || file['@content.downloadUrl']}
+              alt={file.name}
+              className="w-full h-48 md:h-64 object-cover rounded-2xl group-hover:scale-105 transition-transform overflow-hidden"
+            />
+          )}
+        </div>
+      ))}
 
       {selectedImageIndex !== null && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-75 z-50">
@@ -133,13 +122,6 @@ const PhotoCard: React.FC = () => {
           </button>
         </div>
       )}
-
-      <DataLoadButton
-        data={remainingFiles}
-        handleLoadMore={loadMoreContent}
-        isLoadMore={false}
-        buttonDisable={remainingFiles.length === 0}
-      />
     </div>
   );
 };
