@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import { fetchMediaFiles, OnedriveFile } from '@lib/onedriveApi';
 import { RiArrowLeftSLine, RiArrowRightSLine, RiCloseLine } from 'react-icons/ri';
 import Image from 'next/image';
@@ -7,6 +7,53 @@ const Skeleton: React.FC = () => (
   <div className="w-full h-48 md:h-64 bg-gray-300 animate-pulse rounded-2xl group-hover:scale-105 transition-transform overflow-hidden" />
 );
 
+interface GalleryItemProps {
+  file: OnedriveFile;
+  index: number;
+  onClick: (index: number) => void;
+}
+
+const GalleryItem: React.FC<GalleryItemProps> = ({ file, index, onClick }) => {
+  const handleItemClick = () => {
+    onClick(index);
+  };
+
+  if (file.file.mimeType.startsWith('image/')) {
+    return (
+      <div
+        key={file.id}
+        className="relative shadow dark:shadow-gray-600 p-2 rounded-2xl group transition-[opacity,transform] duration-100"
+        onClick={handleItemClick}
+      >
+        <Image
+          src={file['@content.downloadUrl']}
+          alt={file.name}
+          width={600}
+          height={720}
+          className="w-full h-48 md:h-64 object-cover rounded-2xl group-hover:scale-105 transition-transform overflow-hidden"
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      key={file.id}
+      className="relative shadow dark:shadow-gray-600 p-2 rounded-2xl group transition-[opacity,transform] duration-100"
+      onClick={handleItemClick}
+    >
+      <div className="relative w-full h-48 md:h-64 rounded-2xl group-hover:scale-105 transition-transform overflow-hidden">
+        <video src={file['@content.downloadUrl']} className="w-full h-full object-cover rounded-2xl" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <svg className="w-12 h-12 text-white opacity-80 transition-opacity duration-200 group-hover:opacity-100" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const GalleryCard: React.FC = () => {
   const pageSize = 10;
   const [files, setFiles] = useState<OnedriveFile[]>([]);
@@ -14,20 +61,27 @@ const GalleryCard: React.FC = () => {
   const [isSliding, setIsSliding] = useState<boolean>(false);
   const [slideStartX, setSlideStartX] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [hasMore, setHasMore] = useState<boolean>(true); // Track if there are more files to load
+
+  const fetchMediaFilesMemoized = useCallback(async (offset: number, limit: number) => {
+    const mediaFiles = await fetchMediaFiles(offset, limit);
+    return mediaFiles;
+  }, []);
 
   useEffect(() => {
     const getMediaFiles = async () => {
-      const mediaFiles = await fetchMediaFiles(0, pageSize);
+      const mediaFiles = await fetchMediaFilesMemoized(0, pageSize);
       setFiles(mediaFiles);
       setLoading(false);
+      setHasMore(mediaFiles.length === pageSize); // Check if there are more files to load
     };
 
     getMediaFiles();
-  }, []);
+  }, [fetchMediaFilesMemoized]);
 
-  const handleMediaClick = (index: number) => {
+  const handleMediaClick = useCallback((index: number) => {
     setSelectedIndex(index);
-  };
+  }, []);
 
   const handlePopupClose = () => {
     setSelectedIndex(null);
@@ -70,51 +124,35 @@ const GalleryCard: React.FC = () => {
   };
 
   const loadMore = async () => {
+    if (!hasMore || loading) return; // Check if there are more files to load or if loading is already in progress
+
     setLoading(true);
     const offset = files.length;
-    const mediaFiles = await fetchMediaFiles(offset, pageSize);
+    const mediaFiles = await fetchMediaFilesMemoized(offset, pageSize);
     setFiles(prevFiles => [...prevFiles, ...mediaFiles]);
     setLoading(false);
+    setHasMore(mediaFiles.length === pageSize); // Check if there are more files to load
   };
-  
+
+  const renderGalleryItems = useMemo(() => {
+    return files.map((file, index) => (
+      <GalleryItem key={file.id} file={file} index={index} onClick={handleMediaClick} />
+    ));
+  }, [files, handleMediaClick]);
 
   return (
-    <><div
-      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
-      {files.map((file, index) => (
-        <div
-          key={file.id}
-          className="relative shadow dark:shadow-gray-600 p-2 rounded-2xl group transition-[opacity,transform] duration-100"
-          onClick={() => handleMediaClick(index)}
-        >
-          {file.file.mimeType.startsWith('image/') ? (
-            <Image
-              src={file.thumbnail || file['@content.downloadUrl']}
-              alt={file.name}
-              width={600}
-              height={720}
-              className="w-full h-48 md:h-64 object-cover rounded-2xl group-hover:scale-105 transition-transform overflow-hidden"
-            />
-          ) : (
-            <div className="relative w-full h-48 md:h-64 rounded-2xl group-hover:scale-105 transition-transform overflow-hidden">
-              <video src={file.thumbnail || file['@content.downloadUrl']} className="w-full h-full object-cover rounded-2xl" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <svg className="w-12 h-12 text-white opacity-80 transition-opacity duration-200 group-hover:opacity-100" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-            </div>
-          )}
-        </div>
-      ))}
-
-      {loading && Array(pageSize).fill(0).map((_, index) => (
-        <Skeleton key={`skeleton-${index}`} />
-      ))}
+    <>
+      <div
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4 mt-2"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {renderGalleryItems}
+        {loading && Array(pageSize).fill(0).map((_, index) => (
+          <Skeleton key={`skeleton-${index}`} />
+        ))}
+      </div>
 
       {selectedIndex !== null && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-75 z-50">
@@ -145,9 +183,9 @@ const GalleryCard: React.FC = () => {
           </button>
         </div>
       )}
-    </div>
-    <div className="flex justify-center mt-4">
-        {files.length > 0 && files.length % pageSize === 0 && (
+
+      <div className="flex justify-center mt-4">
+        {hasMore && (
           <button
             className={`px-4 py-2 mx-2 ${loading ? 'bg-gray-300' : 'bg-gray-800'} hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 rounded-md text-white dark:text-white`}
             onClick={loadMore}
@@ -157,14 +195,14 @@ const GalleryCard: React.FC = () => {
           </button>
         )}
 
-        {files.length > 0 && files.length % pageSize !== 0 && (
+        {!hasMore && files.length > 0 && (
           <p className="text-gray-600 dark:text-gray-400 text-center mt-4">
             No More Files
           </p>
         )}
-    </div>
-  </>
+      </div>
+    </>
   );
 };
 
-export default GalleryCard;
+export default React.memo(GalleryCard);

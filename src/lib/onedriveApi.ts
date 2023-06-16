@@ -4,24 +4,10 @@ const { publicRuntimeConfig } = getConfig();
 
 export interface OnedriveFile {
   "@content.downloadUrl": string;
-  cTag: string;
-  createdBy: {};
   createdDateTime: string;
-  eTag: string;
   file: { hashes: {}; mimeType: string };
-  fileSystemInfo: {};
   id: string;
-  image: {};
-  lastModifiedBy: {};
-  lastModifiedDateTime: string;
   name: string;
-  parentReference: {};
-  photo: {};
-  reactions: {};
-  shared: {};
-  size: number;
-  webUrl: string;
-  thumbnail?: string
 }
 
 export async function fetchMediaFiles(startIndex: number, pageSize: number): Promise<OnedriveFile[]> {
