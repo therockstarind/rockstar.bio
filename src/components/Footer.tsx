@@ -31,6 +31,17 @@ export default function Footer({
           )}
         </div>
         <SocialIcon />
+        <Link
+            href="https://wakatime.com/@rockstar"
+        >
+            <Image
+              alt="wakatime"
+              src='https://wakatime.com/badge/user/a634381e-edc6-48e4-a267-5a64225c7dee.svg'
+              width={150}
+              height={20}
+              className="mx-auto mb-6"
+            />
+        </Link>
       </motion.div>
 
     </footer>
