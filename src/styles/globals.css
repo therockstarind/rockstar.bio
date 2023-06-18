@@ -238,7 +238,7 @@ code > .line::before {
     @apply mt-[44px] md:mt-[60px] max-w-4xl 2xl:max-w-5xl 3xl:max-w-7xl relative mx-auto p-4 mb-10 text-neutral-900 dark:text-neutral-200;
   }
   .pageGallery {
-    @apply mt-[44px] md:mt-[60px] max-w-4xl 2xl:max-w-5xl 3xl:max-w-7xl relative mx-auto p-1 mb-10 text-neutral-900 dark:text-neutral-200;
+    @apply mt-[60px] md:mt-[60px] max-w-4xl 2xl:max-w-5xl 3xl:max-w-7xl relative mx-auto p-1 mb-10 text-neutral-900 dark:text-neutral-200;
   }
   .utilities-svg {
     @apply !pointer-events-none mb-4 w-8 h-8;
