@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-// import { popUpFromBottomForText } from "../../content/FramerMotionVariants";
-// import { motion } from "framer-motion";
 
 type TrackProps = {
   url: string;
@@ -33,7 +31,7 @@ export default function Track({
         <div className="relative w-12 md:w-24 h-12 md:h-24 transform origin-center">
           {coverImage ? (
             <Image
-              className="rounded-full"
+              className="rounded"
               src={coverImage}
               width={100}
               height={100}

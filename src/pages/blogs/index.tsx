@@ -139,7 +139,7 @@ export default function Blogs({ blogs }: { blogs: FrontMatter[] }) {
 }
 
 export async function getStaticProps() {
-  const blogs = new MDXContent("posts").getAllPosts();
+  const blogs = new MDXContent("static_pages").getAllPosts();
   return {
     props: { blogs },
   };
