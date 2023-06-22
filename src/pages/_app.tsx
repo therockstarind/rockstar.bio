@@ -7,7 +7,6 @@ import "nprogress/nprogress.css";
 import { DarkModeProvider } from "@context/darkModeContext";
 import { GoogleAnalytics } from "nextjs-google-analytics";
 import { AppProps } from "next/app";
-import { ChakraProvider } from '@chakra-ui/react'
 import { Analytics } from '@vercel/analytics/react';
 
 
@@ -43,10 +42,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         {process.env.NODE_ENV === "production" && (
           <GoogleAnalytics strategy="lazyOnload" />
         )}
-        <ChakraProvider>
         <Component {...pageProps} />
         <Analytics />
-        </ChakraProvider>
       </Layout>
     </DarkModeProvider>
   );
