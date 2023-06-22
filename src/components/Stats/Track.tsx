@@ -40,13 +40,13 @@ export default function Track({
               style={{
                 height: "100%",
               }}
-            ></Image>
+            />
           ) : (
             <div className="w-full h-full bg-white animate-pulse"></div>
           )}
         </div>
         <div>
-          <p className="text-base md:text-xl text-gray-900 dark:text-white font-semibold transform origin-left font-barlow">
+          <p className="transform origin-left text-black text-xs sm:text-sm md:text-base line-clamp-1 dark:text-white font-semibold font-barlow">
             {title ?? <div className="w-full h-4 bg-white animate-pulse"></div>}
           </p>
           <p className="transform origin-left text-gray-500 text-xs sm:text-sm md:text-base line-clamp-1">
