@@ -1,11 +1,11 @@
+import { BlogCardAnimation } from "@content/FramerMotionVariants";
+import { FrontMatter } from "@lib/types";
+import Image from "next/image";
 import Link from "next/link";
 import { getFormattedDate } from "@utils/date";
-import { FrontMatter } from "@lib/types";
-import React, { useRef } from "react";
-import Image from "next/image";
 import { ProfileImage } from "@utils/utils";
 import { motion } from "framer-motion";
-import { BlogCardAnimation } from "@content/FramerMotionVariants";
+import { useRef } from "react";
 
 export default function Blog({
   blog,
@@ -15,6 +15,7 @@ export default function Blog({
   animate?: boolean;
 }) {
   const blogRef = useRef(null);
+
   return (
     <motion.article
       ref={blogRef}
@@ -33,14 +34,14 @@ export default function Blog({
           height={630}
           blurDataURL={blog.image}
           quality={25}
-          className="transition-all duration-300 backdrop-blur-xl rounded-xl my-auto"
+          className="my-auto transition-all duration-300 backdrop-blur-xl rounded-xl"
         />
       </div>
 
-      <div className="flex flex-col mt-2 sm:mt-0 w-full px-2 pb-2 sm:p-1 lg:py-5 md:pr-5 h-full">
+      <div className="flex flex-col w-full h-full px-2 pb-2 mt-2 sm:mt-0 sm:p-1 lg:py-5 md:pr-5">
         <Link
           href={`/blogs/${blog.slug}`}
-          className=" font-bold text-neutral-900 md:text-xl dark:text-neutral-200 hover:underline"
+          className="font-bold text-neutral-900 md:text-xl dark:text-neutral-200 hover:underline"
         >
           {blog.title}
         </Link>
@@ -49,7 +50,7 @@ export default function Blog({
         </p>
 
         <div className="flex items-center justify-between mt-auto">
-          <div className="flex font-barlow gap-3 items-center z-10">
+          <div className="z-10 flex items-center gap-3 font-barlow">
             <div className="w-[30px]">
               <Image
                 alt="Rock Star"
@@ -60,15 +61,20 @@ export default function Blog({
               />
             </div>
             <div className="flex flex-col">
-              <Link href="/about" className="font-bold text-sm hover:underline">
-                Rock Star
-              </Link>
+              <div className="flex items-center text-sm gap-1">
+                <Link
+                  href="/about"
+                  className="text-sm font-medium hover:underline"
+                >
+                  Rock Star 
+                </Link>
+              </div>
               <span className="text-xs">
                 {getFormattedDate(new Date(blog.date))}
               </span>
             </div>
           </div>
-          <p className="text-gray-500 dark:text-dark-3 text-xs md:text-sm font-medium flex justify-between items-center">
+          <p className="flex items-center justify-between text-xs font-medium text-gray-500 dark:text-dark-3 md:text-sm">
             <span>{blog.readingTime.text}</span>
           </p>
         </div>

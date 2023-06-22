@@ -20,7 +20,7 @@ const Media: React.FC<MediaProps> = ({ media }) => {
       rel="noopener noreferrer"
     >
       <div className="relative shadow dark:shadow-gray-600 p-2 rounded-2xl group transition-[opacity,transform] duration-100">
-        <div className="w-48 h-64 relative rounded-2xl overflow-hidden">
+        <div className="w-48 h-72 relative rounded-2xl overflow-hidden">
           <img
             src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${media.posterPath}`}
             alt={`${media.title}`}
@@ -55,7 +55,7 @@ function LoadingMovies() {
           key={item}
           className="relative shadow dark:shadow-gray-600 p-2 rounded-2xl group transition-[opacity,transform] duration-100"
         >
-          <div className="w-48 h-64 relative rounded-2xl overflow-hidden">
+          <div className="w-48 h-72 relative rounded-2xl overflow-hidden">
             <div className="bg-gray-200 dark:bg-darkSecondary h-full w-full rounded-lg animate-pulse"></div>
             <div className="absolute top-1 right-0.5">
               <div className="bg-white dark:bg-gray-800 rounded-full p-1">
