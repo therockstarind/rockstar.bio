@@ -313,13 +313,6 @@ code > .line::before {
     margin: 0;
   }
 }
-
-/* for modal ========================= */
-@import '@radix-ui/colors/blackA.css';
-@import '@radix-ui/colors/green.css';
-@import '@radix-ui/colors/mauve.css';
-@import '@radix-ui/colors/violet.css';
-
 /* reset */
 button,
 fieldset,
