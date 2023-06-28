@@ -16,6 +16,7 @@ module.exports = withPWA({
     TMDB_API_KEY: process.env.TMDB_API_KEY,
     TMDB_ACCOUNT_ID: process.env.TMDB_ACCOUNT_ID,
     TMDB_ACCESS_TOKEN: process.env.TMDB_ACCESS_TOKEN,
+    TITLE: process.env.TITLE,
   },
   reactStrictMode: true,
   images: {

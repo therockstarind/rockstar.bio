@@ -10,6 +10,7 @@ import AnimatedDiv from "@components/FramerMotion/AnimatedDiv";
 import { motion } from "framer-motion";
 import TMDBList from "@/components/Card/tmdbCard";
 import Seo from "@/components/Seo";
+import { UserName } from "@/utils/utils";
 
 type Stats = {
   title: string;
@@ -23,7 +24,7 @@ export default function Stats({
   return (
     <>
       <Seo
-        title="Movies & TV Series | Rock Star 💕"
+        title={`Movies & TV Series  | ${UserName}`}
         description="In case you are wondering What Movies & TV Series I watch and Music I listen, Here's the list of what I'm currently listing or watching on the daily basis. This list is always changing."
         keywords={[ "what i watch?", "what i listen?", "Movies", "Web Series", "Statistics", "rockstar.bio", "therocktarind", "rocktarind", "rdrive"]}
         url="https://rockstar.bio/media/"

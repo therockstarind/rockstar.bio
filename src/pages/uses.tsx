@@ -12,12 +12,13 @@ import { motion } from "framer-motion";
 import AnimatedDiv from "@components/FramerMotion/AnimatedDiv";
 import { UtilityType } from "@lib/types";
 import Seo from "@/components/Seo";
+import { UserName } from "@/utils/utils";
 
 export default function Utilities() {
   return (
     <>     
       <Seo
-        title="Uses | Rock Star 💕"
+        title={`Uses  | ${UserName}`}
         description="In case you are wondering What tech I use, Here's the list of what tech I'm currently using for coding on the daily basis. This list is always changing."
         keywords={[ "what i use?", "uses", "rockstar.bio", "therocktarind", "rocktarind", "rdrive"]}
         url="https://rockstar.bio/uses/"

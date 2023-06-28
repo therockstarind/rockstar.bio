@@ -4,13 +4,14 @@ import GalleryCard from "@/components/OneDrive/GalleryCard";
 import { motion } from "framer-motion";
 import { FadeContainer, opacityVariant } from "@/content/FramerMotionVariants";
 import AnimatedDiv from "@/components/FramerMotion/AnimatedDiv";
+import { UserName } from "@/utils/utils";
 
 export default function Gallery({}: {}) {
   
   return (
     <>
       <Seo
-        title="Gallery | Rock Star 💕"
+        title={`Gallery | ${UserName}`}
         description="Here you watch the all photos & videos of our life Journy . . ."
         keywords={[ "photos", "videos", "rockstar.bio", "therocktarind", "rocktarind", "rdrive"]}
         url="https://rockstar.bio/gallery/"

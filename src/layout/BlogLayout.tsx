@@ -1,4 +1,4 @@
-import { ProfileImage } from "../utils/utils";
+import { ProfileImage, UserName } from "../utils/utils";
 import Image from "next/image";
 import ShareOnSocialMedia from "../components/ShareOnSocialMedia";
 import { FiPrinter } from "react-icons/fi";
@@ -59,7 +59,7 @@ export default function BlogLayout({
         <div className="flex items-center !w-full text-gray-700 dark:text-gray-300">
           <div className="flex items-center gap-2 w-full">
             <Image
-              alt="Rock Star"
+              alt={UserName}
               height={30}
               width={30}
               src={ProfileImage}
@@ -67,7 +67,7 @@ export default function BlogLayout({
             />
             <div className="flex flex-col text-xs sm:text-sm sm:flex-row sm:justify-between w-full">
               <p className="flex items-center gap-2 font-medium !my-0">
-                <span>Rock Star</span>
+                <span>{UserName}</span>
                 <span>•</span>
                 <span>{getFormattedDate(new Date(post.meta.date))}</span>
               </p>

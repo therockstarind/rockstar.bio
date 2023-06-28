@@ -1,3 +1,4 @@
+import { UserName } from "@/utils/utils";
 import Head from "next/head";
 
 type SeoProps = {
@@ -24,7 +25,7 @@ const Seo = ({
       <meta name="robots" content="index, follow" />
       <meta name="description" content={description} />
       {keywords.length > 0 && <meta name="keywords" content={keywords.join(',')} />}
-      <meta name="author" content="Rock Star 💕" />
+      <meta name="author" content={UserName} />
 
       {/* Favicon */}
       <link rel="icon" href="/favicon.ico" />

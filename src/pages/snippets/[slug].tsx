@@ -7,6 +7,7 @@ import { GetStaticPropsContext } from "next";
 import { PostType } from "@lib/types";
 import SnippetLayout from "@layout/SnippetLayout";
 import pageMeta from "@content/meta";
+import { UserName } from "@/utils/utils";
 
 export default function SnippetPage({
   snippet,
@@ -21,7 +22,7 @@ export default function SnippetPage({
     <>
       <Metadata
         title={snippet.meta.title}
-        suffix="Rock Star"
+        suffix={UserName}
         description={snippet.meta.excerpt}
         previewImage={pageMeta.snippets.image}
         keywords={pageMeta.snippets.keywords}

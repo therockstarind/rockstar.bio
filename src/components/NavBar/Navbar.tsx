@@ -9,6 +9,8 @@ import { useDarkMode } from "../../context/darkModeContext";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import MusicPlayer from "../Music";
 import NavBar from "./os";
+import { UserName } from "@/utils/utils";
+import Image from "next/image";
 
 
 /* Navbar Component */
@@ -30,7 +32,7 @@ export default function Navbar() {
         variants={popUp}
         className="cursor-pointer"
       >
-        <img src="/img/logo.png" alt={`Rock Star`} width="40" height="40"  />
+        <Image src="/img/logo.png" alt={UserName} width="40" height="40"  />
       </motion.div>
       </Link>
 

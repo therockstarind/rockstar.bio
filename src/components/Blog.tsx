@@ -3,7 +3,7 @@ import { FrontMatter } from "@lib/types";
 import Image from "next/image";
 import Link from "next/link";
 import { getFormattedDate } from "@utils/date";
-import { ProfileImage } from "@utils/utils";
+import { ProfileImage, UserName } from "@utils/utils";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 
@@ -53,7 +53,7 @@ export default function Blog({
           <div className="z-10 flex items-center gap-3 font-barlow">
             <div className="w-[30px]">
               <Image
-                alt="Rock Star"
+                alt={UserName}
                 height={933}
                 width={933}
                 src={ProfileImage}
@@ -66,7 +66,7 @@ export default function Blog({
                   href="/about"
                   className="text-sm font-medium hover:underline"
                 >
-                  Rock Star 
+                  {UserName}
                 </Link>
               </div>
               <span className="text-xs">

@@ -6,6 +6,7 @@ import MDXContent from "@lib/MDXContent";
 import { MDXRemote } from "next-mdx-remote";
 import { GetStaticPropsContext } from "next";
 import { PostType } from "@lib/types";
+import { UserName } from "@/utils/utils";
 
 export default function Post({
   post,
@@ -20,7 +21,7 @@ export default function Post({
     <>
       <Metadata
         title={post.meta.title}
-        suffix="Rock Star"
+        suffix={UserName}
         description={post.meta.excerpt}
         previewImage={post.meta.image}
         keywords={post.meta.keywords}

@@ -7,7 +7,7 @@ import {
   popUp,
 } from "@content/FramerMotionVariants";
 import AnimatedHeading from "@components/FramerMotion/AnimatedHeading";
-import { ProfileImage } from "@utils/utils";
+import { ProfileImage, UserName } from "@utils/utils";
 import getRSS from "@lib/generateRSS";
 import generateSitemap from "@lib/sitemap";
 import { motion } from "framer-motion";
@@ -29,7 +29,7 @@ export default function Home({ }: { blogs: FrontMatter[] }) {
   return (
     <>
       <Seo
-        title="Rock Star 💕"
+        title={`${UserName}`}
         description="Hi 🙋 Welcome To The Boring Introduction. I would love to make a lot friends and find them all around the world 🌍. btw I like to live alone with my own self and please don’t ask me why I like that🙊🙊🙊...."
         keywords={["rockstar.bio", "therocktarind", "rocktarind", "rdrive"]}
         url="https://rockstar.bio"
@@ -64,7 +64,7 @@ export default function Home({ }: { blogs: FrontMatter[] }) {
                   variants={opacityVariant}
                   className="text-5xl lg:text-6xl font-bold"
                 >
-                  Rock Star
+                  {UserName}
                 </motion.h1>
                 <motion.p
                   variants={opacityVariant}

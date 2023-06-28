@@ -1,3 +1,7 @@
+import getConfig from 'next/config';
+
+const { publicRuntimeConfig } = getConfig();
+export const UserName: string = publicRuntimeConfig.TITLE;
 export const ProfileImage: string = "https://github.com/therockstarind.png";
 
 export const snippetsImages: { [key: string]: string } = {
