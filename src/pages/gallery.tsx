@@ -24,7 +24,7 @@ export default function Gallery({}: {}) {
             whileInView="visible"
             viewport={{ once: true }}
             variants={opacityVariant}
-            className="text-3xl sm:text-4xl capitalize font-bold text-neutral-900 dark:text-neutral-200"
+            className="text-3xl sm:text-4xl capitalize font-bold text-neutral-900 dark:text-neutral-200 px-2"
           >
             Photos & Videos
           </motion.h3>
@@ -33,7 +33,7 @@ export default function Gallery({}: {}) {
             whileInView="visible"
             viewport={{ once: true }}
             variants={opacityVariant}
-            className="text-sm"
+            className="text-sm px-2"
           >
             Note: all the content in the original quality so must be need better internet to consume it.
           </motion.h3>
