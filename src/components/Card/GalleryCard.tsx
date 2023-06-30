@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, useCallback, useMemo, useRef } from 'react';
 import { fetchMediaFiles, OnedriveFile } from '@lib/onedriveApi';
 import { RiArrowLeftSLine, RiArrowRightSLine, RiCloseLine } from 'react-icons/ri';
 import Image from 'next/image';
@@ -61,7 +61,9 @@ const GalleryCard: React.FC = () => {
   const [isSliding, setIsSliding] = useState<boolean>(false);
   const [slideStartX, setSlideStartX] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [hasMore, setHasMore] = useState<boolean>(true); // Track if there are more files to load
+  const [hasMore, setHasMore] = useState<boolean>(true);
+
+  const galleryContainerRef = useRef<HTMLDivElement>(null);
 
   const fetchMediaFilesMemoized = useCallback(async (offset: number, limit: number) => {
     const mediaFiles = await fetchMediaFiles(offset, limit);
@@ -73,7 +75,7 @@ const GalleryCard: React.FC = () => {
       const mediaFiles = await fetchMediaFilesMemoized(0, pageSize);
       setFiles(mediaFiles);
       setLoading(false);
-      setHasMore(mediaFiles.length === pageSize); // Check if there are more files to load
+      setHasMore(mediaFiles.length === pageSize);
     };
 
     getMediaFiles();
@@ -105,7 +107,7 @@ const GalleryCard: React.FC = () => {
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!isSliding) return;
+    if (!isSliding || !galleryContainerRef.current) return;
     const currentX = e.touches[0].clientX;
     const deltaX = currentX - (slideStartX || 0);
     const sensitivity = 50;
@@ -124,14 +126,14 @@ const GalleryCard: React.FC = () => {
   };
 
   const loadMore = async () => {
-    if (!hasMore || loading) return; // Check if there are more files to load or if loading is already in progress
+    if (!hasMore || loading) return;
 
     setLoading(true);
     const offset = files.length;
     const mediaFiles = await fetchMediaFilesMemoized(offset, pageSize);
     setFiles(prevFiles => [...prevFiles, ...mediaFiles]);
     setLoading(false);
-    setHasMore(mediaFiles.length === pageSize); // Check if there are more files to load
+    setHasMore(mediaFiles.length === pageSize);
   };
 
   const renderGalleryItems = useMemo(() => {
@@ -144,6 +146,7 @@ const GalleryCard: React.FC = () => {
     <>
       <div
         className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4 mt-2"
+        ref={galleryContainerRef}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -157,7 +160,7 @@ const GalleryCard: React.FC = () => {
       {selectedIndex !== null && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-75 z-50">
           {files[selectedIndex].file.mimeType.startsWith('image/') ? (
-            <img src={files[selectedIndex]['@content.downloadUrl']} alt="Full Image" className="max-w-full max-h-full" />
+            <img src={files[selectedIndex]['@content.downloadUrl']} alt="Rock Star" className="max-w-full max-h-full" />
           ) : (
             <video src={files[selectedIndex]['@content.downloadUrl']} className="max-w-full max-h-full" controls />
           )}
@@ -184,17 +187,17 @@ const GalleryCard: React.FC = () => {
         </div>
       )}
 
-      <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-4">
         {hasMore && (
           <button
-            className={`px-4 py-2 mx-2 ${loading ? 'bg-gray-300' : 'bg-gray-800'} hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 rounded-md text-white dark:text-white`}
+            className={`bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 mt-4 rounded-full items-center justify-center ${loading ? 'bg-gray-300' : 'bg-gray-800'} hover:bg-gray-400 text-white dark:text-white`}
             onClick={loadMore}
             disabled={loading}
           >
             {loading ? 'Loading...' : 'Load More'}
           </button>
         )}
-
+      
         {!hasMore && files.length > 0 && (
           <p className="text-gray-600 dark:text-gray-400 text-center mt-4">
             No More Files
@@ -205,4 +208,4 @@ const GalleryCard: React.FC = () => {
   );
 };
 
-export default React.memo(GalleryCard);
+export default GalleryCard;

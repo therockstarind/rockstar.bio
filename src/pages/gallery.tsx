@@ -1,6 +1,6 @@
 import React from "react";
 import Seo from "@/components/Seo";
-import GalleryCard from "@/components/OneDrive/GalleryCard";
+import GalleryCard from "@/components/Card/GalleryCard";
 import { motion } from "framer-motion";
 import { FadeContainer, opacityVariant } from "@/content/FramerMotionVariants";
 import AnimatedDiv from "@/components/FramerMotion/AnimatedDiv";
