@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function Home() {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 48 48">
@@ -8,7 +10,7 @@ export function Home() {
 
 export function About() {
     return (       
-        <img width="48" height="48" src="https://img.icons8.com/3d-fluency/94/user-male-circle.png" alt="About"/>
+        <Image width="48" height="48" src="https://img.icons8.com/3d-fluency/94/user-male-circle.png" alt="About"/>
     );
   }
 
@@ -28,6 +30,6 @@ export function Tools() {
 
 export function Gallery() {
     return (
-        <img width="48" height="48" src="https://img.icons8.com/fluency/48/photos.png" alt="Gallery"/>
+        <Image width="48" height="48" src="https://img.icons8.com/fluency/48/photos.png" alt="Gallery"/>
     );
   }

@@ -28,6 +28,7 @@ module.exports = withPWA({
       "i.scdn.co",
       "github.com",
       "ubuupg.bn.files.1drv.com",
+      "img.icons8.com",
     ],
   },
   typescript: {

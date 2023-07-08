@@ -1,18 +1,20 @@
+import Image from "next/image";
+
 export function Home() {
     return (
-        <img width="30" height="30" src="https://img.icons8.com/3d-fluency/94/android-os.png" alt="Home"/>
+        <Image width="30" height="30" src="https://img.icons8.com/3d-fluency/94/android-os.png" alt="Home"/>
     );
   }
 
 export function About() {
     return (
-        <img width="30" height="30" src="https://img.icons8.com/3d-fluency/94/user-male-circle.png" alt="About"/>
+        <Image width="30" height="30" src="https://img.icons8.com/3d-fluency/94/user-male-circle.png" alt="About"/>
     );
   }
 
 export function Media() {
     return (
-        <img width="30" height="30" src="https://img.icons8.com/3d-fluency/94/cinema-.png" alt="Media"/>
+        <Image width="30" height="30" src="https://img.icons8.com/3d-fluency/94/cinema-.png" alt="Media"/>
     );
   }
 
